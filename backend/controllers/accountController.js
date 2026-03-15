@@ -1,8 +1,6 @@
 import { supabase } from '../config/supabaseClient.js'
-
 async function loadUserDirectory(userIds) {
   const uniqueIds = [...new Set(userIds.filter(Boolean))]
-
   if (!uniqueIds.length) {
     return new Map()
   }
@@ -120,10 +118,8 @@ export async function transferMoney(request, response) {
       error.message.includes('Insufficient balance')
         ? 400
         : 500
-
     return response.status(statusCode).json({ message: error.message })
   }
-
   response.status(201).json({
     message: 'Transfer completed successfully',
     result: data,
